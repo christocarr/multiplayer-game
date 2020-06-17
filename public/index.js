@@ -15,6 +15,11 @@ const onChatSubmitted = (ev) => {
 };
 
 (() => {
+
+  const sock = io();
+
+  sock.on('message', chatLog(message));
+
   chatLog('Welcome');
   const chatForm = document.querySelector('.chat-form');
   chatForm.addEventListener('submit', onChatSubmitted);

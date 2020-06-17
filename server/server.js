@@ -10,7 +10,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on('connection', (sock) => {
-  console.log('connection')
+  sock.emit('message', 'Connection made.')
 });
 
 server.on('error', (err) => {
