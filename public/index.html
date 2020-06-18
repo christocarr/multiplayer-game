@@ -5,13 +5,15 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="chat-log-wrapper">
-      <ul class="chat-log"></ul>
+    <div class="chat-wrapper">
+      <div class="chat-log-wrapper">
+        <ul class="chat-log"></ul>
+      </div>
+      <form class="chat-form">
+        <input class="chat-text" type="text">
+        <input class="chat-send" type="submit" value="Send">
+      </form>
     </div>
-    <form class="chat-form">
-      <input class="chat-text" type="text">
-      <input class="chat-send" type="submit" value="Send">
-    </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="index.js"></script>
   </body>
