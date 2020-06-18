@@ -10,7 +10,9 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on('connection', (sock) => {
-  sock.emit('message', 'Connection made.')
+  sock.on ('message', (msg) => {
+    io.emit('message', msg)
+  })
 });
 
 server.on('error', (err) => {
