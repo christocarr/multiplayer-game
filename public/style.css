@@ -3,3 +3,7 @@
   border: 1px solid grey;
   overflow-y: scroll;
 }
+
+.chat-log-wrapper ul {
+  list-style: none;
+}
