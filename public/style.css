@@ -1,5 +1,5 @@
 .chat-wrapper {
-  border: 1px solid grey;
+  border: 1px solid #8698be;
   border-radius: 0.5rem;
   padding-top: 0.5rem;
 }
@@ -10,7 +10,7 @@
 }
 
 form {
-  border-top: 1px solid grey;
+  border-top: 1px solid #8698be;
   padding: 0.5rem;
 }
 
