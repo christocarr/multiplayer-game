@@ -10,11 +10,15 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 io.on('connection', (sock) => {
-  sock.emit('message', 'Connection made. You can now chat')
+  sock.emit('message', 'Connection made. You can now chat');
 
-  sock.on ('message', (msg) => {
-    io.emit('message', msg)
-  })
+  sock.on('message', (msg) => {
+    io.emit('message', msg);
+  });
+
+  sock.on('turn', ({ x, y }) => {
+    io.emit('turn', { x, y });
+  });
 });
 
 server.on('error', (err) => {
