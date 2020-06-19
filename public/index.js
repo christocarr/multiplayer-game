@@ -18,10 +18,10 @@ const onChatSubmitted = (sock) => (ev) => {
 
 const getBoard = (canvas, numCells = 3) => {
   const ctx = canvas.getContext('2d');
-  ctx.strokeRect(0, 0, 400, 400);
   const cellSize = Math.floor(canvas.width / numCells);
 
   const drawGrid = () => {
+    ctx.strokeRect(0, 0, 400, 400);
     ctx.beginPath();
     for (let i = 0; i < numCells; i++) {
       ctx.moveTo(i * cellSize, 0);
@@ -40,7 +40,16 @@ const getBoard = (canvas, numCells = 3) => {
     ctx.fillRect(x - cellSize / 2, y - cellSize / 2, cellSize, cellSize);
   };
 
-  return { fillCell, drawGrid };
+  const clearBoard = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  };
+
+  const reset = () => {
+    clearBoard();
+    drawGrid();
+  };
+
+  return { fillCell, reset };
 };
 
 const getClickCoords = (element, ev) => {
@@ -55,9 +64,9 @@ const getClickCoords = (element, ev) => {
 
 (() => {
   const canvas = document.querySelector('canvas');
-  const { fillCell, drawGrid } = getBoard(canvas);
+  const { fillCell, reset} = getBoard(canvas);
 
-  drawGrid();
+  reset();
 
   const sock = io();
 
