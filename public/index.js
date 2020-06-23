@@ -37,7 +37,7 @@ const getBoard = (canvas, numCells = 3) => {
   };
 
   const fillCell = (x, y) => {
-    ctx.fillRect(x - cellSize / 2, y - cellSize / 2, cellSize, cellSize);
+    ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
   };
 
   const clearBoard = () => {
@@ -49,7 +49,14 @@ const getBoard = (canvas, numCells = 3) => {
     drawGrid();
   };
 
-  return { fillCell, reset };
+  const getCellCoords = (x, y) => {
+    return {
+      x: Math.floor(x / cellSize),
+      y: Math.floor(y / cellSize),
+    };
+  };
+
+  return { fillCell, reset, getCellCoords };
 };
 
 const getClickCoords = (element, ev) => {
@@ -64,7 +71,7 @@ const getClickCoords = (element, ev) => {
 
 (() => {
   const canvas = document.querySelector('canvas');
-  const { fillCell, reset} = getBoard(canvas);
+  const { fillCell, reset, getCellCoords } = getBoard(canvas);
 
   reset();
 
@@ -72,7 +79,7 @@ const getClickCoords = (element, ev) => {
 
   const onClick = (ev) => {
     const { x, y } = getClickCoords(canvas, ev);
-    sock.emit('turn', { x, y });
+    sock.emit('turn', getCellCoords(x, y));
   };
 
   sock.on('message', chatLog);
